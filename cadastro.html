@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <form>
+        <h2>Cadastro</h2>
+
+        <label for="txtUsuario">Nome</label>
+        <input type="text" id="txtUsuario" name="txtUsuario" required>
+
+        <label for="txtemail">Email</label>
+        <input type="text" id="txtemail" name="txtemail" required>
+
+        <label for="date">Data de Nascimento</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="telefone">Tefelone</label>
+        <input type="text" id="telefone" name="telefone" required>
+
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" name="endereco" required>
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required>
+
+        <label for="confirmsenha">Confirmar Senha</label>
+        <input type="password" id="confirmsenha" name="confirmsenha" required>
+
+        <label for="SellConta">Tipo de conta</label>
+        <select id="sellConta" name="SellConta" required>
+            <option value="" disabled selected>Selecione o tipo de conta</option>
+            <option value="admin"selected>Administrador</option>
+            <option value="usuario"selected>Uso proprio</option>
+            <option value="conv" selected>Convidado</option>
+        </select>
+
+        <button class="button" type="button" onclick="validarcadastro()">cadastra-se</button>
+        <p id="popmessage"></p>
+    </form>
+    <script src="index.js"></script>
+
+</body>
+
+</html>

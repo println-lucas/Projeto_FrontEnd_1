@@ -1,0 +1,57 @@
+1. Abrir o Terminal no VS Code
+No VS Code, vá para Terminal > Novo Terminal.
+2. Configurar Seu Usuário e E-mail no Git
+Se ainda não fez isso, configure seu nome e e-mail com os comandos:
+
+git config --global user.name "println-lucas"
+git config --global user.email "lucassilvagabriel92@gmail.com"
+
+4. Autenticar via Token Pessoal (Se Usar HTTPS)
+Se usar HTTPS, você precisa de um token de acesso (já que o GitHub não aceita mais senhas diretas):
+
+No GitHub, vá para Settings > Developer Settings > Personal Access Tokens.
+Gere um novo token com permissões para repositórios.
+Use esse token ao clonar ou fazer push/pull:
+
+git clone https://github.com/usuario/repo.git
+
+Agora você pode clonar repositórios, enviar commits e sincronizar com o GitHub diretamente pelo terminal do VS Code! 🚀
+==================================================================================
+1️⃣ Clonar o Repositório para seu Computador
+Se ainda não clonou o repositório, abra o terminal do VS Code e execute:
+
+git clone https://github.com/usuario/repo.git
+
+Depois, acesse a pasta do projeto:
+cd nome-do-repo
+
+E abra no VS Code:
+code .
+
+2️⃣ Criar uma Nova Branch (Opcional, mas Recomendado)
+Se for trabalhar em uma nova funcionalidade ou correção, crie uma branch:
+
+git checkout -b minha-nova-branch
+
+3️⃣ Editar o Código
+Agora você pode editar os arquivos normalmente no VS Code.
+
+4️⃣ Adicionar e Comitar as Mudanças
+Depois de fazer as edições, salve os arquivos e volte ao terminal para adicionar as mudanças:
+
+git add .
+Crie um commit com uma mensagem descritiva:
+
+git commit -m "Descrição do que foi alterado"
+
+5️⃣ Enviar as Mudanças para o GitHub
+Se criou uma nova branch, envie para o repositório remoto:
+
+git push origin minha-nova-branch
+
+Se estiver na branch principal (main ou master):
+
+git push origin main
+
+6️⃣ Criar um Pull Request (Se Necessário)
+Se trabalhou em uma branch nova, vá ao GitHub e crie um Pull Request para mesclar as alterações na branch principal.

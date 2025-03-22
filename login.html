@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <div>
+    <form class="loginClass">
+        <h2>Login</h2>
+        <label for="LoginUsuario">Nome de Usuario ou email</label>
+        <input type="text" id="LoginUsuario" name="LoginUsuario" required>
+
+
+        <label for="loginSenha"> Senha </label>
+        <input type="password" id="loginSenha" name="loginSenha" required>
+
+        <button type="button" onclick="verifylogin()">Entrar</button>
+
+        <p id="popmessage"></p>
+    </form>
+</div>
+
+<div>
+    <p class="paragraf"><a href="cadastro.html"> Não possui conta? Cadastre-se agora!</a></p>
+</div>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
