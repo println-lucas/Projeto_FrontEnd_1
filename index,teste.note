@@ -1,0 +1,168 @@
+===========================================================CADASTRO==============================================================================
+function validarcadastro(){
+
+    let nome = document.getElementById("txtUsuario").value.trim();
+    let email = document.getElementById("txtemail").value.trim();
+    let date1 = document.getElementById("date").value;
+    let telefone = document.getElementById("telefone").value.trim();
+    let conta = document.getElementById("sellConta").value.trim();
+    let senha = document.getElementById("senha").value.trim();
+    let endereco  = document.getElementById("endereco").value.trim();
+    let popMessage = document.getElementById("popmessage");
+    let confirmar = document.getElementById("confirmsenha").value.trim();
+
+    if (nome == "" || email == "" || conta == "" || date1 == "" || telefone == "" || senha == "" || endereco =="" || confirmar == ""){
+        popMessage.textContent = "todos os campos devem ser preenchidos";
+        popMessage.style.color = "red";
+
+    } else {
+       validardata(date1);
+       validarEmail(email1);
+       validarSenha(senha1);
+        popMessage.textContent = "Cadastro realizado com sucesso";
+        popMessage.style.color = "blue";
+        localStorage.setItem("nomeLogado", nome);   //sessionStorage.setItem
+        localStorage.setItem("emailLogado", email1); //sessionStorage.setItem
+        localStorage.setItem("senhaLogada", senha1); //sessionStorage.setItem
+        window.location.href = "index.html";
+        console.log(nome);
+        console.log(email1);
+        console.log(senha1);
+        console.log(date1);
+        alert("teste")
+    }
+}
+
+
+===========================================================SENHA==============================================================================
+function validarSenha(senha){
+
+    let messagePop = document.getElementById("popmessage"); 
+    var carateresEspecias = "!@#$%¨&*()";
+    var carateresNumeros = "0123456789";
+    var carateresMaiusculos = "ABCDEFGHIJLMNOPQRSTUVWXYZ";
+    
+    var maiuscula = false;
+    var especial = false;
+    var numero = false;
+    
+    for(i = 0; i < senha.length; i++){
+                                                                                                    // #senha123
+        let verificar = senha.charAt(i);
+        
+        if(carateresMaiusculos.indexOf(verificar) !== -1){
+            maiuscula = true;
+
+        } else if (carateresNumeros.indexOf(verificar) !== -1){
+            numero = true;
+
+        } else if(carateresEspecias.indexOf(verificar) !== -1){
+            especial = true;
+        }
+
+    }
+
+    if(!maiuscula){
+        messagePop.textContent = "A senha deve ter ao menos uma letra maiuscula.";
+        return false;
+    } else if(!numero){
+        messagePop.textContent = "A senha deve ter ao menos um caraccter Especial (@%$&).";
+        return false;
+    } else if(!especial){
+        messagePop.textContent = "A senha deve ter ao menos um numero";
+        return false;
+    }
+
+    return true;
+}
+
+
+function verificarsenha(senha){
+    let messagePop = document.getElementById("popmessage"); 
+    var carateresEspecias = "!@#$%¨&*()";
+    var carateresNumeros = "0123456789";
+    var carateresMaiusculos = "ABCDEFGHIJLMNOPQRSTUVWXYZ";
+    
+
+    for(i = 0; i < senha.length; i++){
+        if(carateresMaiusculos.indexOf(charAt(i)) != -1){
+            alert(contem maiusculo);
+        }
+    }
+}
+
+
+===========================================================EMAIL==============================================================================
+function validarEmail(txtemail){
+
+    let messagePop = document.getElementById("popmessage");
+    var webMail1 = ["gmail.com", "hotmail.com", "outlook.com", "icloud.com", "yahoo.com"];
+
+    if(webMail1.includes(txtemail)){
+        return true;
+    } else {
+        messagePop.textContent = "Tipo de email inválido!";
+        messagePop.style.color = "red";
+        return false;
+    }
+}
+
+===========================================================DATA==============================================================================
+function validardata(date) {
+    let dataAtual = new Date();
+    let dataNasc = new Date(date);
+
+    if (isNaN(dataNasc.getTime())) {
+        alert("Data de nascimento inválida!");
+        return false;
+    }
+
+    let idade = dataAtual.getFullYear() - dataNasc.getFullYear();
+    let mesAtual = dataAtual.getMonth();
+    let mesNasc = dataNasc.getMonth();
+
+    if (mesAtual < mesNasc || (mesAtual === mesNasc && dataAtual.getDate() < dataNasc.getDate())) {
+        idade--;
+    }
+
+    console.log("Idade calculada:", idade);
+
+    if (idade < 18) {
+        alert("Você não pode utilizar este site!");
+        return false;
+    }
+
+    return true;
+}
+
+===========================================================LOGIN==============================================================================
+function verifylogin(){
+
+    let usuariologin = document.getElementById("LoginUsuario").value.trim();
+    let senhalogin = document.getElementById("loginSenha").value.trim();
+    let messagePop = document.getElementById("popmessage");
+    let usuarioNome = localStorage.getItem("nomeLogado"); //sessionStorage.getItem
+    let usuarioEmail = localStorage.getItem("emailLogado"); //sessionStorage.getItem
+    let usuarioSenha = localStorage.getItem("senhaLogada"); //sessionStorage.getItem
+
+    if((usuariologin == usuarioNome || usuariologin == usuarioEmail) && senhalogin == usuarioSenha){
+        console.log(localStorage.getItem("nomeLogado"), localStorage.getItem("emailLogado"), localStorage.getItem("senhaLogada"))
+        messagePop.textContent = "Login realizado com sucesso";
+        messagePop.style.color = "blue";
+        alert("Login realizado com sucesso");
+        window.location.href = "index.html";
+
+    } else {
+        messagePop.textContent = "Usuario ou senha incorretos";
+        messagePop.style.color = "red";
+    }
+
+}
+
+===========================================================LOGOUT==============================================================================
+function logout (){
+    localStorage.removeItem("nomeLogado");
+    localStorage.removeItem("emailLogado");
+    localStorage.removeItem("senhaLogada");
+    window.location.href = "login.html";
+}
