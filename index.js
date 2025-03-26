@@ -41,7 +41,6 @@ function validarcadastro() {
 
     if (dateteste == true && emailteste == true && senhateste == true) {
 
-        alert("TESTE")
         localStorage.setItem("nomeLogado", nome);
         localStorage.setItem("emailLogado", email1);
         localStorage.setItem("senhaLogada", senha1);
@@ -49,7 +48,6 @@ function validarcadastro() {
         popMessage.textContent = "Login aprovado";
         popMessage.style.color = "blue";
         window.location.href = "index.html";
-
         return;
     }
 
@@ -88,6 +86,10 @@ function validarSenha(senha) {
         messagePop.style.color = "red";
 
         return false;
+    }
+
+    if(maisc == true && num == true){
+        return true;
     }
 }
 
@@ -154,7 +156,6 @@ function verifylogin() {
         console.log(localStorage.getItem("nomeLogado"), localStorage.getItem("emailLogado"), localStorage.getItem("senhaLogada"))
         messagePop.textContent = "Login realizado com sucesso";
         messagePop.style.color = "blue";
-        alert("Login realizado com sucesso");
         window.location.href = "index.html";
 
     } else {
@@ -170,5 +171,14 @@ function logout() {
     localStorage.removeItem("nomeLogado");
     localStorage.removeItem("emailLogado");
     localStorage.removeItem("senhaLogada");
+    
+    let usu = document.getElementById("nomeLogado");
+    let mail = document.getElementById("emailLogado");
+    let pass = document.getElementById("senhaLogada");
+
+    console.log(usu);
+    console.log(mail);
+    console.log(pass);    
+    
     window.location.href = "cadastro.html";
 }

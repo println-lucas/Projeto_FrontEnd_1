@@ -1,96 +1,95 @@
 ===========================================================CADASTRO==============================================================================
-function validarcadastro(){
+function validarcadastro() {
 
     let nome = document.getElementById("txtUsuario").value.trim();
-    let email = document.getElementById("txtemail").value.trim();
+    let email1 = document.getElementById("txtemail").value.trim();
     let date1 = document.getElementById("date").value;
     let telefone = document.getElementById("telefone").value.trim();
     let conta = document.getElementById("sellConta").value.trim();
-    let senha = document.getElementById("senha").value.trim();
-    let endereco  = document.getElementById("endereco").value.trim();
+    let senha1 = document.getElementById("senha").value;
+    let endereco = document.getElementById("endereco").value.trim();
     let popMessage = document.getElementById("popmessage");
     let confirmar = document.getElementById("confirmsenha").value.trim();
 
-    if (nome == "" || email == "" || conta == "" || date1 == "" || telefone == "" || senha == "" || endereco =="" || confirmar == ""){
+    if (nome === "" || email1 == "" || conta == "" || date1 === "" || telefone == "" || senha1 == "" || endereco == "" || confirmar == "") {
         popMessage.textContent = "todos os campos devem ser preenchidos";
         popMessage.style.color = "red";
 
+        return;
+    } if (senha1 !== confirmar) {
+        popMessage.textContent = "Senhas não coincidem";
+        popMessage.style.color = "red";
+        return false;
     } else {
-       validardata(date1);
-       validarEmail(email1);
-       validarSenha(senha1);
-        popMessage.textContent = "Cadastro realizado com sucesso";
-        popMessage.style.color = "blue";
-        localStorage.setItem("nomeLogado", nome);   //sessionStorage.setItem
-        localStorage.setItem("emailLogado", email1); //sessionStorage.setItem
-        localStorage.setItem("senhaLogada", senha1); //sessionStorage.setItem
-        window.location.href = "index.html";
-        console.log(nome);
-        console.log(email1);
-        console.log(senha1);
-        console.log(date1);
-        alert("teste")
-    }
-}
 
+    let dateteste = false; 
+    let emailteste = false;
+    let senhateste = false;
+    
+    if (validardata(date1)) {
+        dateteste = true;
+    }
+    if (validarEmail(email1)) {
+        emailteste = true;
+    }
+    if (validarSenha(senha1)) {
+        senhateste = true;
+    }
+
+    if (dateteste == true && emailteste == true && senhateste == true) {
+
+        alert("TESTE")
+        localStorage.setItem("nomeLogado", nome);
+        localStorage.setItem("emailLogado", email1);
+        localStorage.setItem("senhaLogada", senha1);
+
+        popMessage.textContent = "Login aprovado";
+        popMessage.style.color = "blue";
+        window.location.href = "index.html";
+
+        return;
+    }
+
+}
 
 ===========================================================SENHA==============================================================================
-function validarSenha(senha){
+function validarSenha(senha) {
+    let messagePop = document.getElementById("popmessage");
+    let carateresNumeros = "0123456789";
+    let carateresMaiusculos = "ABCDEFGHIJLMNOPQRSTUVWXYZ";
 
-    let messagePop = document.getElementById("popmessage"); 
-    var carateresEspecias = "!@#$%¨&*()";
-    var carateresNumeros = "0123456789";
-    var carateresMaiusculos = "ABCDEFGHIJLMNOPQRSTUVWXYZ";
-    
-    var maiuscula = false;
-    var especial = false;
-    var numero = false;
-    
-    for(i = 0; i < senha.length; i++){
-                                                                                                    // #senha123
+    let maisc = false;
+    let num = false;
+
+    for (let i = 0; i < senha.length; i++) {
+
         let verificar = senha.charAt(i);
-        
-        if(carateresMaiusculos.indexOf(verificar) !== -1){
-            maiuscula = true;
 
-        } else if (carateresNumeros.indexOf(verificar) !== -1){
-            numero = true;
-
-        } else if(carateresEspecias.indexOf(verificar) !== -1){
-            especial = true;
-        }
-
-    }
-
-    if(!maiuscula){
-        messagePop.textContent = "A senha deve ter ao menos uma letra maiuscula.";
-        return false;
-    } else if(!numero){
-        messagePop.textContent = "A senha deve ter ao menos um caraccter Especial (@%$&).";
-        return false;
-    } else if(!especial){
-        messagePop.textContent = "A senha deve ter ao menos um numero";
-        return false;
-    }
-
-    return true;
-}
-
-
-function verificarsenha(senha){
-    let messagePop = document.getElementById("popmessage"); 
-    var carateresEspecias = "!@#$%¨&*()";
-    var carateresNumeros = "0123456789";
-    var carateresMaiusculos = "ABCDEFGHIJLMNOPQRSTUVWXYZ";
-    
-
-    for(i = 0; i < senha.length; i++){
-        if(carateresMaiusculos.indexOf(charAt(i)) != -1){
-            alert(contem maiusculo);
+        if (carateresMaiusculos.indexOf(verificar) !== -1) {
+            maisc = true;
+        } if (carateresNumeros.indexOf(verificar) !== -1) {
+            num = true;
         }
     }
-}
 
+    if (!maisc) {
+        messagePop.textContent = "A senha deve conter ao menos uma letra maiscula";
+        messagePop.style.color = "red";
+
+        return false;
+    } else if (!num) {
+        messagePop.textContent = "A senha deve conter ao menos um numero";
+        messagePop.style.color = "red";
+
+        return false;
+    }
+
+    if (maisc == true && num == true){
+        messagePop.textContent = "Senha aprovada";
+        messagePop.style.color = "bllue";
+        return true;
+    }
+}
 
 ===========================================================EMAIL==============================================================================
 function validarEmail(txtemail){
